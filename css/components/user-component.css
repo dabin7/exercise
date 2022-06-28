@@ -1,7 +1,9 @@
 .user-component {
+    display: flex;
+    align-items: center;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
-.user-component,
 .user-component__column:first-child {
     display: flex;
     align-items: center;
@@ -43,4 +45,12 @@ height: 80px;
 .user-component__time {
     margin-bottom: 5px;
     display: block;
+}
+.user-component__column-more {
+    display: flex;
+    align-items: flex-end;
+    font-size: 30px;
+}
+.user-component__subtitle i {
+    color: rgba(255, 0, 0, 0.6)
 }

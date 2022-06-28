@@ -4,6 +4,7 @@
     padding: var(--horiznontal-space);
     align-items: center;
     margin-bottom: 10px;
+    position: relative;
 }
 
 .screen-header__title {
@@ -16,4 +17,14 @@
 }
 .friends-screen {
     padding: 0px var(--horiznontal-space);
+}
+.screen-header__notification {
+    background-color: tomato;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    align-items: center;
+    position: absolute;
+    bottom: 50px;
+    right: 18px;
 }
