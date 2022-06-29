@@ -5,6 +5,11 @@
     align-items: center;
     margin-bottom: 10px;
     position: relative;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+    top: 30px;
+    background-color: white;
 }
 
 .screen-header__title {

@@ -4,9 +4,12 @@
     padding: 0px 3px;
     font-size: 15px;
     font-weight: 600;
-    position: sticky;
+    position: fixed;
+    top: 0;
     width: 100%;
     box-sizing: border-box;
+    background-color: white;
+    z-index: 2;
 }
 .status-bar__column {
     width: 33%;
