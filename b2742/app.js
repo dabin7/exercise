@@ -4,7 +4,7 @@ let input = fs.readFileSync(filePath).toString().split(' ');
 solution(Number(input[0]));
 
 function solution(N) {
-    for(let i =1; i<=N;++i){
+    for(let i =N; i>=1;--i){
         console.log(i)
     }
 };
