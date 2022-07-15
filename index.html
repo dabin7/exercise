@@ -11,17 +11,17 @@
     <header></header>
     <main>
         <div id="clock">00:00</div>
-        <form class="login-form">
-            <input type="text">
+        <form class="login-form hidden">
+            <input type="text" maxlength="15" placeholder="Nick Name">
             <button>Log In</button>
         </form>
       <div class="left-screen">
-        <span id="greeting" class="hidden"></span>
+        <span class="greeting hidden" ></span>
         <div class="core"></div>
       </div>
       <div class="right-screen">
         <form class="todo-form">
-            <input type="text">
+            <input type="text" placeholder="To Do List">
         </form>
         <ul id="todo-list"></ul>
       </div>
@@ -31,6 +31,7 @@
         <span></span>
     </div>
     <footer></footer>
-    <script src="main.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/login.js"></script>
 </body>
 </html>
