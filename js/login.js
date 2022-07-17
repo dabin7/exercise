@@ -14,7 +14,7 @@ function loginNameSubmit(event) {
 }
 
 function painGreetings(nickname){
-    greeting.innerText = `${nickname}, Goal`
+    greeting.innerText = `${nickname},`
     greeting.classList.remove(HIDDEN_CLASSNAME); 
 
 }

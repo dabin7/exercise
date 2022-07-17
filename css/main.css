@@ -1,0 +1,47 @@
+.main-screen {
+    display: flex;
+    width: 100%;
+    font-family: Cute font;
+    font-weight: 600;
+}
+
+.left-screen {
+    width: 50%;
+}
+
+.left-screen span {
+    margin: 0 0 0px 80px;
+    font-size: 100px;
+}
+
+.right-screen {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.right-screen input {
+    margin: 15px;
+}
+
+.right-screen li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 350px;
+    margin: 10px 0;
+}
+
+.right-screen li span {
+    display: flex;
+    margin: 0px 10px;
+    font-size: 30px;
+    width: 300px;
+    height: 30px;
+}
+
+.right-screen li button {
+    border: none;
+}

@@ -10,21 +10,25 @@
 <body>
     <header></header>
     <main>
-        <div id="clock">00:00</div>
+      <div class="login-screen"> 
+      <div id="clock">00:00</div>
         <form class="login-form hidden">
             <input type="text" maxlength="15" placeholder="Nick Name">
             <button>Log In</button>
         </form>
+      </div>
+      <div class = "main-screen">
       <div class="left-screen">
         <span class="greeting hidden" ></span>
         <div class="core"></div>
       </div>
       <div class="right-screen">
         <form class="todo-form">
-            <input type="text" placeholder="To Do">
+            <input type="text" placeholder="Enter please">
         </form>
         <ul class="todo-list"></ul>
       </div>
+    </div>
     </main>
     <div id="weather">
         <span></span>
@@ -34,5 +38,6 @@
     <script src="js/clock.js"></script>
     <script src="js/login.js"></script>
     <script src="js/todo.js"></script>
+    <script src="js/bg.js"></script>
 </body>
 </html>
