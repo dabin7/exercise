@@ -1,0 +1,13 @@
+.ddd {
+    position: relative;
+}
+
+#weather {
+    position: absolute;
+    top: 10px;
+    bottom: 0px;
+    right: 0px;
+    left: 50px;
+    font-family: Cute font;
+    font-size: 40px;
+}

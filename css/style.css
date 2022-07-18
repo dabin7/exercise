@@ -4,6 +4,8 @@
 @import "clock.css";
 @import "main.css";
 @import "bg.css";
+@import "login.css";
+@import "weather.css";
 
 .hidden {
     display: none;
