@@ -18,7 +18,22 @@ for (let i = 1; i <= inputC; ++i) {
 solution(inputC, inputTestCase);
 
 function solution(C, testCase){
-    for (i = 0; i < C; ++i){
-        
+    for (let i=0; i < C; ++i){
+        const score = testCase[i]
+        let avg = 0;
+
+    for (let j=0; j < score.N; ++j){
+        avg += score.arr[j];
     }
+    avg /= score.N;
+
+    let cnt = 0;
+    for (let j=0; j < score.N; ++j){
+        if (avg < score.arr[j]) {
+            cnt++
+        }
+    }
+    let answer = cnt / score.N;
+    console.log(`${(answer*100).toFixed(3)}%`)
+}
 }
