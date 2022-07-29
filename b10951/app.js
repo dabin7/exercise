@@ -16,10 +16,10 @@ function solution(testCaseArray){
     let A = 0;
     let B = 0;
     let idx = 0;
-    while (idx !== testCaseArray.length){
-        A = testCaseArray[idx].A
-        B = testCaseArray[idx].B
-        console.log(A+B);
-        idx++;
-    }
+        while(idx !== testCaseArray.length){
+            A = testCaseArray[idx].A;
+            B = testCaseArray[idx].B;
+            console.log(A + B);
+            idx++;
+        }
 }

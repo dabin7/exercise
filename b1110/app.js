@@ -4,27 +4,16 @@ let input = fs.readFileSync(filePath).toString().split('\n');
 solution(+input[0]);
 
 function solution(N){
-    let makeNum = N;
-    let ans =0;
-    while (makeNum !== N || ans === 0) {
-        let ten;
-        let one;
-        if(makeNum>=10){
-            ten = +String(makeNum)[0];
-            one = +String(makeNum)[1];
-        } else {
-            ten = 0;
-            one = +String(makeNum)[0];
-        }
-        makeNum = ten + one;
-        let makeOne;
-        if (makeNum >= 10) {
-            makeOne = String(makeNum)[1]
-        } else {
-            makeOne = String(makeNum)[0]
-        }
-        makeNum = +(String(one) + String(makeOne))
-        ans++;
+    let num = N;
+    let sum;
+    let cnt = 0;
+
+    while(N !== num || cnt === 0){
+        cnt++;
+
+        sum = Math.floor(num/10) + num % 10;
+        num = (num % 10)*10 + sum % 10; 
+
     }
-    console.log(ans);
+    console.log(N)
 }
