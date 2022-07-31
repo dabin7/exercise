@@ -5,15 +5,14 @@ const items = input.map((item) => +item);
 solution(items);
 
 function solution(items){
-    const result = items[0]*items[1]*items[2];
-    const strResult = String(result);
-    const answer = Array(10).fill(0);
+    const num = items[0]*items[1]*items[2];
+    const strNum = String(num).split('').map((item) => +item)
+    let arr = Array(10).fill(0)
 
-    for (let i = 0; i < strResult.length; ++i) {
-        const nowChar = +strResult[i];
-        answer[nowChar]++;
+    for(let i = 0; i < strNum.length; ++i){
+        arr[strNum[i]]++
     }
-    for (let i = 0; i < answer.length;++i){
-    console.log(answer[i])
+    for(let i = 0; i < arr.length; ++i){
+        console.log(arr[i])
     }
 }

@@ -1,20 +1,22 @@
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().split('\n');
-const items = input.map((item) => +item);
+
+const items = input.map((item)=>+item);
+
 solution(items);
 
 function solution(items){
-    let max = 0;
-    let maxIdx = 0;
-    
-    for ( i=0; i < items.length; ++i){
-        item = items[i];
-        if(max < item ){
-            max= item;
-            maxIdx = i+1;
-        }
+    let maxnum = items[0];
+    let X = 0;
+    for(let i = 0; i < items.length;++i){
+    if(maxnum < items[i]){
+        maxnum = items[i];
+        X = i;
     }
-    console.log(`${max}`)
-    console.log(`${maxIdx}`)
 }
+console.log(`${maxnum}`)
+console.log(X+1)
+}
+
+
