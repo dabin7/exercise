@@ -1,39 +1,22 @@
-const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-const input = fs.readFileSync(filePath).toString().split('\n');
-const inputC = +input[0];
-const inputTestCase = [];
-for (let i = 1; i <= inputC; ++i) {
-    const arr = input[i].split(' ').map((item) => +item);
-    const newArr = [];
-    for (let i = 1; i <= arr[0]; ++i) {
-        newArr.push(arr[i]);
-    }
-    const testCase = {
-        N: arr[0],
-        arr: newArr,
-    };
-    inputTestCase.push(testCase);
-}
-solution(inputC, inputTestCase);
+let input = require('fs').readFileSync(filePath).toString().split('\n');
 
-function solution(C, testCase){
-    for (let i=0; i < C; ++i){
-        const score = testCase[i]
-        let avg = 0;
+let num = +input[0];
 
-    for (let j=0; j < score.N; ++j){
-        avg += score.arr[j];
-    }
-    avg /= score.N;
+for (let i = 1; i <= num; i++){
+    let score = input[i].split(' ');
+    let num2 = +score.shift()
+    let count = 0;
 
-    let cnt = 0;
-    for (let j=0; j < score.N; ++j){
-        if (avg < score.arr[j]) {
-            cnt++
+    let avg = score.reduce((acc,v) => acc += +v, 0);
+
+    avg /= num2;
+
+    for(let j = 0; j < num2; j++){
+        if(score[j] > avg){
+            count++
         }
     }
-    let answer = cnt / score.N;
-    console.log(`${(answer*100).toFixed(3)}%`)
-}
+    let result = ((count / num2 )*100).toFixed(3);
+    console.log(result + "%")
 }

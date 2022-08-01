@@ -6,19 +6,18 @@ const items = input.slice(1);
 solution(arrayLength, items);
 
 function solution(arrayLength, items){
-    for (let i=0; i < arrayLength; ++i){
-        const OXList = items[i];    
+    for(let i = 0; i < arrayLength; ++i){
         let cnt = 0;
-        let score = 0;
-    for (let j=0; j < OXList.length; ++j){
-        const OorX = OXList[j]
-        if( OorX === "O"){
-            cnt++
-            score += cnt;
-        }else{
+        let sum = 0;
+        for(let j = 0; j < items[i].length; ++j){
+         if(items[i][j] === 'O'){
+            cnt++;
+         }else {
             cnt = 0;
+         }
+
+         sum += cnt;
         }
+        console.log(sum)
     }
-    console.log(score)
- }
 }
