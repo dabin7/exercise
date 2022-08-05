@@ -4,9 +4,9 @@ let input = fs.readFileSync(filePath).toString().split('\n');
 solution(input[0], input[1]);
 
 function solution(N, numbers){
-    let ans = 0;
+    let x = 0;
     for(let i = 0; i < N; ++i){
-        ans += +numbers[i]
+        x += +numbers[i]
     }
-    console.log(ans);
+    console.log(x)
 }

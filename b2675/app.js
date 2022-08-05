@@ -13,14 +13,14 @@ for (let i = 1; i <= +input[0]; ++i) {
 solution(+input[0], rsArray);
 
 function solution(N, rsArray){
-    for(let i = 0; i < N;++i){
-        let { R, S } = rsArray[i];
-        let P = '';
+    for(let i = 0; i < N; ++i){
+        let ans = ""
+        const { R, S} = rsArray[i]
         for(let j = 0; j < S.length; ++j){
-            for(let k = 0; k < R; ++k){
-                P += S[j];
-            }
+        for(let k = 0; k < R; ++k){
+            ans += S[j]       
         }
-        console.log(P);
+    }
+    console.log(ans)
     }
 }

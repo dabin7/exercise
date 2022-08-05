@@ -4,16 +4,9 @@ let input = fs.readFileSync(filePath).toString().split('\n');
 solution(input[0]);
 
 function solution(S){
-    let answerArray = new Array(26).fill(-1);
-    for (let i = 0; i < S.length; ++i){
-        let nowChar = S[i];
-        let answerArrayIdx = nowChar.charCodeAt() - 97;
-        if (answerArray[answerArrayIdx] === -1 ){
-            answerArray[answerArrayIdx] = i;
-        }
+    const arr = [];
+    for (let i = 97; i <= 122; ++i){
+        arr.push(S.indexOf(String.fromCharCode(i)))
     }
-
-    for(let i = 0; i < answerArray.length; ++i){
-        process.stdout.write(answerArray[i] + " ");
-    }
+    console.log(arr.join(' '))
 }
