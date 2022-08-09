@@ -7,10 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <title>mm</title>
 </head>
-<body>
-    <canvas></canvas>
-    <input id="line-width" type="range" min="1" max="10" value="5" />
-    <div>
+  <body>
+    <div class="color-options">
     <input type="color" id="color" />
     <div 
      class="color-option"
@@ -57,10 +55,20 @@
      style="background-color:#6c7a89" 
      data-color ="#6c7a89">
     </div>
-</div>
-<button id="mode-btn">Fill</button>
-<button id="destroy-btn">Destroy</button>
-<button id="eraser-btn">Eraser</button>
+    </div>
+    <canvas></canvas>
+    <div class="btns">
+        <input id="line-width" type="range" min="1" max="10" value="5" />
+        <button id="mode-btn">Fill</button>
+        <button id="destroy-btn">Destroy</button>
+        <button id="eraser-btn">Eraser</button>
+        <label for="file">
+            Add Photo
+            <input type="file" accept="image/*" id="file">
+        </label>
+        <input type="text" placeholder="Write!" id="text" />
+        <button id="save">Save Image</button>
+    </div>
     <script src="app.js"></script>
-</body>
+  </body>
 </html>

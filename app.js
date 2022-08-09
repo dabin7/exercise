@@ -1,3 +1,4 @@
+const fileInput = document.getElementById("file")
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d")
 const lineWidth = document.querySelector("#line-width")
@@ -8,6 +9,8 @@ const colorOptions = Array.from(
 const modeBtn = document.getElementById("mode-btn")
 const destroyBtn = document.getElementById("destroy-btn")
 const eraserBtn = document.getElementById("eraser-btn")
+const textInput = document.getElementById("text")
+const saveBtn = document.getElementById("save")
 
 const CANVAS_SIZE = 800;
 
@@ -15,18 +18,7 @@ canvas.width = CANVAS_SIZE;
 canvas.height = CANVAS_SIZE;
 
 ctx.lineWidth = lineWidth.value;
-
-const colors = [
-    "#5f10f5",
-    "#89c4f4",
-    "#9f5afd",
-    "#ffe4e4",
-    "#e76d89",
-    "#f9b42d",
-    "#fff000",
-    "#f62459",
-    "#6c7a89"
-]
+ctx.lineCap = "round"
 
 let isPainting = false;
 let isFilling = false;
@@ -91,6 +83,37 @@ function onEraserClick() {
     modeBtn.innerText = "Fill"
 }
 
+function onFileChange(event) {
+    const file = event.target.files[0]
+    const url = URL.createObjectURL(file)
+    const image = new Image()
+    image.src = url;
+    image.onload = function(){
+        ctx.drawImage(image, 0, 0, CANVAS_SIZE,CANVAS_SIZE)
+        fileInput.value = null;
+    }
+}
+
+function onDoubleClick(event){
+    const text = textInput.value;
+    if (text !== ""){
+        ctx.save();
+    ctx.lineWidth = 1;
+    ctx.font = "46px serif"
+    ctx.fillText(text, event.offsetX, event.offsetY);
+    ctx.restore();
+    }
+}
+
+function onSaveClick(){
+    const url= canvas.toDataURL();
+    const a = document.createElement("a")
+    a.href = url
+    a.download = "my.png"
+    a.click()
+}
+
+canvas.addEventListener("dblclick", onDoubleClick)
 canvas.addEventListener("mousemove", onMove)
 canvas.addEventListener("mousedown", onMouseDown)
 canvas.addEventListener("mouseup", onMouseUp)
@@ -106,3 +129,5 @@ colorOptions.forEach(color => color.addEventListener("click",onColorClick))
 modeBtn.addEventListener("click", onModeClick)
 destroyBtn.addEventListener("click", onDestroyClick)
 eraserBtn.addEventListener("click", onEraserClick)
+fileInput.addEventListener("change", onFileChange)
+saveBtn.addEventListener("click", onSaveClick)
