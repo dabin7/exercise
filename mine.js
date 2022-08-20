@@ -79,6 +79,65 @@ function onRightClick(event) {
   }
 }
 
+// 1 2 3
+// 4 5 6    click이 5번 주변 폭탄여부 카운트함
+// 7 8 9
+
+function countMine(rowIndex, cellIndex) {
+  const mines = [CODE.MINE, CODE.QUESTION_MINE, CODE.FLAG_MINE];
+  let i = 0;
+  mines.includes(data[rowIndex - 1]?.[cellIndex - 1]) && i++; // && 1이 맞으면 2를 실행 if문대신 사용
+  mines.includes(data[rowIndex - 1]?.[cellIndex]) && i++;
+  mines.includes(data[rowIndex - 1]?.[cellIndex + 1]) && i++; // ?.연산자 - 없어도 에러가 안남 보호연산
+  mines.includes(data[rowIndex][cellIndex - 1]) && i++;
+  mines.includes(data[rowIndex][cellIndex + 1]) && i++;
+  mines.includes(data[rowIndex + 1]?.[cellIndex - 1]) && i++;
+  mines.includes(data[rowIndex + 1]?.[cellIndex]) && i++;
+  mines.includes(data[rowIndex + 1]?.[cellIndex + 1]) && i++;
+  return i;
+}
+
+function open(rowIndex, cellIndex) {
+  const target = tbody.children[rowIndex]?.children[cellIndex];
+  if (!target) {
+    return;
+  }
+  const count = countMine(rowIndex, cellIndex);
+  target.textContent = count || ""; // 만약 null,undifine 즉 0 을 true값을 받고싶다면 ??를 쓴다.
+  target.className = "opened";
+  data[rowIndex][cellIndex] = count;
+  return count;
+}
+
+function openAround(rI, cI) {
+  const count = open(rI, cI); // open() 자동으로 실행???
+  if (count === 0) {
+    openAround(rI - 1, cI - 1);
+    openAround(rI - 1, cI);
+    openAround(rI - 1, cI + 1);
+    openAround(rI, cI - 1);
+    openAround(rI, cI + 1);
+    openAround(rI + 1, cI - 1);
+    openAround(rI + 1, cI);
+    openAround(rI + 1, cI + 1);
+  }
+}
+
+function onLeftClick(event) {
+  const target = event.target;
+  const rowIndex = target.parentNode.rowIndex;
+  const cellIndex = target.cellIndex;
+  const cellData = data[rowIndex][cellIndex];
+  if (cellData === CODE.NORMAL) {
+    openAround(rowIndex, cellIndex);
+  } else if (cellData === CODE.MINE) {
+    target.textContent = "뢰";
+    target.className = "opened";
+    tbody.removeEventListener("contextmenu", onRightClick);
+    tbody.removeEventListener("click", onLeftClick);
+  }
+}
+
 function drawTable() {
   data = plantMine();
   data.forEach((row) => {
@@ -91,7 +150,8 @@ function drawTable() {
       tr.append(td); // append 와 appendchild 의 차이 : return값 반환 and DOMstring을 받을수있냐 아니냐의 차이
     });
     tbody.append(tr);
-    tbody.addEventListener("contextmenu", onRightClick); //이벤트버블링
+    tbody.addEventListener("contextmenu", onRightClick);
+    tbody.addEventListener("click", onLeftClick); //이벤트버블링
   });
 }
 drawTable();
