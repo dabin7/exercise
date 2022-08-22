@@ -159,14 +159,60 @@ function openAround(rI, cI) {
   }, 0);
 }
 
+let normalCellFound = false;
+let searched;
+let firstClick = true;
+function transferMine(rI, cI) {
+  if (normalCellFound) return;
+  if (rI < 0 || rI >= row || cI < 0 || cI >= cell) return;
+  if (searched[rI][cI]) return;
+  if (data[rI]?.[cI] === CODE.NORMAL) {
+    normalCellFound = true;
+    data[rI][cI] = CODE.MINE;
+  } else {
+    searched[rI][cI] = true;
+    transferMine(rI - 1, cI - 1);
+    transferMine(rI - 1, cI);
+    transferMine(rI - 1, cI + 1);
+    transferMine(rI, cI - 1);
+    transferMine(rI, cI + 1);
+    transferMine(rI + 1, cI - 1);
+    transferMine(rI + 1, cI);
+    transferMine(rI + 1, cI + 1);
+  }
+}
+
+function showMines() {
+  const mines = [CODE.MINE, CODE.QUESTION_MINE, CODE.FLAG_MINE];
+  data.forEach((row, rowIndex) => {
+    row.forEach((cell, cellIndex) => {
+      if (mines.includes(cell)) {
+        tbody.children[rowIndex].children[cellIndex].textContent = "X";
+      }
+    });
+  });
+}
+
 function onLeftClick(event) {
   const target = event.target;
   const rowIndex = target.parentNode.rowIndex;
   const cellIndex = target.cellIndex;
-  const cellData = data[rowIndex][cellIndex];
+  let cellData = data[rowIndex][cellIndex]; /// 참조관계 x 복사관계이기때문에
+  if (firstClick) {
+    firstClick = false;
+    searched = Array(row)
+      .fill()
+      .map(() => []);
+    if (cellData === CODE.MINE) {
+      transferMine(rowIndex, cellIndex);
+      data[rowIndex][cellIndex] = CODE.NORMAL; // 복사관계일때는 따로 써줌
+      cellData = CODE.NORMAL;
+    }
+  }
   if (cellData === CODE.NORMAL) {
     openAround(rowIndex, cellIndex);
   } else if (cellData === CODE.MINE) {
+    showMines();
     target.textContent = "뢰";
     target.className = "opened";
     clearInterval(interval);
