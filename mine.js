@@ -1,8 +1,10 @@
 const tbody = document.querySelector("#table tbody");
 const result = document.querySelector("#result");
-const row = 10; //줄
-const cell = 10; //칸
-const mine = 10;
+const timer = document.querySelector("#timer");
+const form = document.querySelector("#form");
+let row; //줄
+let cell; //칸
+let mine;
 const CODE = {
   NORMAL: -1,
   QUESTION: -2,
@@ -13,6 +15,27 @@ const CODE = {
   OPENED: 0, //0이상 다 열린칸
 };
 let data;
+let openCount;
+let startTime;
+let interval;
+const dev = false; //변수로 개발자모드 구별
+
+function onSubmit(event) {
+  event.preventDefault();
+  row = parseInt(event.target.row.value);
+  cell = parseInt(event.target.cell.value);
+  mine = parseInt(event.target.mine.value);
+  openCount = 0;
+  tbody.innerHTML = "";
+  clearInterval(interval);
+  drawTable(); // ????
+  startTime = new Date();
+  interval = setInterval(() => {
+    const time = Math.floor((new Date() - startTime) / 1000);
+    timer.textContent = `${time}초`;
+  }, 1000);
+}
+form.addEventListener("submit", onSubmit);
 
 function plantMine() {
   const candidate = Array(row * cell)
@@ -63,7 +86,7 @@ function onRightClick(event) {
   } else if (cellData === CODE.FLAG_MINE) {
     data[rowIndex][cellIndex] = CODE.MINE;
     target.className = "";
-    target.textContent = "X";
+    //target.textContent = "X";//
   } else if (cellData === CODE.NORMAL) {
     data[rowIndex][cellIndex] = CODE.QUESTION;
     target.className = "question";
@@ -98,6 +121,7 @@ function countMine(rowIndex, cellIndex) {
 }
 
 function open(rowIndex, cellIndex) {
+  if (data[rowIndex]?.[cellIndex] >= CODE.OPENED) return; //한번 연거는 안연다
   const target = tbody.children[rowIndex]?.children[cellIndex];
   if (!target) {
     return;
@@ -106,21 +130,33 @@ function open(rowIndex, cellIndex) {
   target.textContent = count || ""; // 만약 null,undifine 즉 0 을 true값을 받고싶다면 ??를 쓴다.
   target.className = "opened";
   data[rowIndex][cellIndex] = count;
+  openCount++;
+  if (openCount === row * cell - mine) {
+    const time = (new Date() - startTime) / 1000;
+    clearInterval(interval);
+    tbody.removeEventListener("contextmenu", onRightClick);
+    tbody.removeEventListener("click", onLeftClick);
+    setTimeout(() => {
+      alert(`승리했습니다! ${time}초가 걸렸습니다.`);
+    }, 300);
+  }
   return count;
 }
 
 function openAround(rI, cI) {
-  const count = open(rI, cI); // open() 자동으로 실행???
-  if (count === 0) {
-    openAround(rI - 1, cI - 1);
-    openAround(rI - 1, cI);
-    openAround(rI - 1, cI + 1);
-    openAround(rI, cI - 1);
-    openAround(rI, cI + 1);
-    openAround(rI + 1, cI - 1);
-    openAround(rI + 1, cI);
-    openAround(rI + 1, cI + 1);
-  }
+  setTimeout(() => {
+    const count = open(rI, cI);
+    if (count === 0) {
+      openAround(rI - 1, cI - 1); //재귀??
+      openAround(rI - 1, cI);
+      openAround(rI - 1, cI + 1);
+      openAround(rI, cI - 1);
+      openAround(rI, cI + 1);
+      openAround(rI + 1, cI - 1);
+      openAround(rI + 1, cI);
+      openAround(rI + 1, cI + 1);
+    }
+  }, 0);
 }
 
 function onLeftClick(event) {
@@ -133,6 +169,7 @@ function onLeftClick(event) {
   } else if (cellData === CODE.MINE) {
     target.textContent = "뢰";
     target.className = "opened";
+    clearInterval(interval);
     tbody.removeEventListener("contextmenu", onRightClick);
     tbody.removeEventListener("click", onLeftClick);
   }
@@ -145,7 +182,7 @@ function drawTable() {
     row.forEach((cell) => {
       const td = document.createElement("td");
       if (cell === CODE.MINE) {
-        td.textContent = "X";
+        // td.textContent = "X";//
       }
       tr.append(td); // append 와 appendchild 의 차이 : return값 반환 and DOMstring을 받을수있냐 아니냐의 차이
     });
@@ -154,4 +191,3 @@ function drawTable() {
     tbody.addEventListener("click", onLeftClick); //이벤트버블링
   });
 }
-drawTable();
