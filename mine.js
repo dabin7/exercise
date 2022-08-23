@@ -15,10 +15,10 @@ const CODE = {
   OPENED: 0, //0이상 다 열린칸
 };
 let data;
-let openCount;
+let openCount = 0;
 let startTime;
 let interval;
-const dev = false; //변수로 개발자모드 구별
+//const dev = false; 변수로 개발자모드 구별
 
 function onSubmit(event) {
   event.preventDefault();
@@ -26,6 +26,9 @@ function onSubmit(event) {
   cell = parseInt(event.target.cell.value);
   mine = parseInt(event.target.mine.value);
   openCount = 0;
+  normalCellFound = false;
+  searched = null;
+  firstClick = true; //                 ?????
   tbody.innerHTML = "";
   clearInterval(interval);
   drawTable(); // ????
@@ -197,7 +200,7 @@ function onLeftClick(event) {
   const target = event.target;
   const rowIndex = target.parentNode.rowIndex;
   const cellIndex = target.cellIndex;
-  let cellData = data[rowIndex][cellIndex]; /// 참조관계 x 복사관계이기때문에
+  let cellData = data[rowIndex]?.[cellIndex]; /// 참조관계 x 복사관계이기때문에
   if (firstClick) {
     firstClick = false;
     searched = Array(row)
