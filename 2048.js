@@ -60,15 +60,35 @@ draw();
 
 function moveCells(direction) {
   switch (direction) {
-    case "left":
+    case "left": {
       const newData = [[], [], [], []];
       data.forEach((rowData, i) => {
         rowData.forEach((cellData, j) => {
           if (cellData) {
             const currentRow = newData[i];
+            const prevData = currentRow[currentRow.length - 1];
+            if (prevData === cellData) {
+              currentRow[currentRow.length - 1] *= -2;
+            } else {
+              newData[i].push(cellData);
+            }
           }
         });
       });
+      console.log(newData);
+      [1, 2, 3, 4].forEach((rowData, i) => {
+        [1, 2, 3, 4].forEach((cellData, j) => {
+          data[i][j] = Math.abs(newData[i][j]) || 0;
+        });
+      });
+      break;
+    }
+    case "right":
+      break;
+    case "up":
+      break;
+    case "down":
+      break;
   }
 }
 window.addEventListener("keyup", (event) => {
