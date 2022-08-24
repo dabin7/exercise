@@ -1,5 +1,5 @@
-const table = document.querySelector("table");
-const score = document.querySelector("score");
+const table = document.getElementById("table");
+const score = document.getElementById("score");
 let data = [];
 
 // table -> fragment -> tr -> td   성능우수
@@ -20,6 +20,7 @@ function startGame() {
   put2ToRandomCell();
   draw();
 }
+
 function put2ToRandomCell() {
   const emptyCells = [];
   data.forEach(function (rowData, i) {
@@ -34,6 +35,7 @@ function put2ToRandomCell() {
   const randomCell = emptyCells[Math.floor(Math.random() * emptyCells.length)];
   data[randomCell[0]][randomCell[1]] = 2;
 }
+
 function draw() {
   data.forEach((rowData, i) => {
     rowData.forEach((cellData, j) => {
@@ -50,13 +52,13 @@ function draw() {
 }
 startGame();
 
-data = [
-  [0, 2, 4, 2],
-  [0, 0, 8, 0],
-  [2, 2, 2, 2],
-  [0, 16, 0, 4],
-];
-draw();
+// data = [
+//   [0, 2, 4, 2],
+//   [0, 0, 8, 0],
+//   [2, 1024, 1024, 2],
+//   [0, 16, 0, 4],
+// ];
+// draw();
 
 function moveCells(direction) {
   switch (direction) {
@@ -68,6 +70,9 @@ function moveCells(direction) {
             const currentRow = newData[i];
             const prevData = currentRow[currentRow.length - 1];
             if (prevData === cellData) {
+              const score2 = parseInt(score.textContent);
+              score.textContent =
+                score2 + currentRow[currentRow.length - 1] * 2;
               currentRow[currentRow.length - 1] *= -2;
             } else {
               newData[i].push(cellData);
@@ -83,14 +88,105 @@ function moveCells(direction) {
       });
       break;
     }
-    case "right":
+
+    case "right": {
+      const newData = [[], [], [], []];
+      data.forEach((rowData, i) => {
+        rowData.forEach((cellData, j) => {
+          if (rowData[3 - j]) {
+            const currentRow = newData[i];
+            const prevData = currentRow[currentRow.length - 1];
+            if (prevData === rowData[3 - j]) {
+              const score2 = parseInt(score.textContent);
+              score.textContent =
+                score2 + currentRow[currentRow.length - 1] * 2;
+              currentRow[currentRow.length - 1] *= -2;
+            } else {
+              newData[i].push(rowData[3 - j]);
+            }
+            //cellData => rowData[3 - j]
+          }
+        });
+      });
+      console.log(newData);
+      [1, 2, 3, 4].forEach((rowData, i) => {
+        [1, 2, 3, 4].forEach((cellData, j) => {
+          data[i][3 - j] = Math.abs(newData[i][j]) || 0;
+        });
+      });
       break;
-    case "up":
+    }
+
+    case "up": {
+      const newData = [[], [], [], []];
+      data.forEach((rowData, i) => {
+        rowData.forEach((cellData, j) => {
+          if (cellData) {
+            const currentRow = newData[j];
+            const prevData = currentRow[currentRow.length - 1];
+            if (prevData === cellData) {
+              const score2 = parseInt(score.textContent);
+              score.textContent =
+                score2 + currentRow[currentRow.length - 1] * 2;
+              currentRow[currentRow.length - 1] *= -2;
+            } else {
+              newData[j].push(cellData);
+            }
+          } // i => j
+        });
+      });
+      console.log(newData);
+      [1, 2, 3, 4].forEach((rowData, i) => {
+        [1, 2, 3, 4].forEach((cellData, j) => {
+          data[j][i] = Math.abs(newData[i][j]) || 0;
+        });
+      });
       break;
-    case "down":
+    }
+
+    case "down": {
+      const newData = [[], [], [], []];
+      data.forEach((rowData, i) => {
+        rowData.forEach((cellData, j) => {
+          if (data[3 - i][j]) {
+            const currentRow = newData[j];
+            const prevData = currentRow[currentRow.length - 1];
+            if (prevData === data[3 - i][j]) {
+              const score2 = parseInt(score.textContent);
+              score.textContent =
+                score2 + currentRow[currentRow.length - 1] * 2;
+              currentRow[currentRow.length - 1] *= -2;
+            } else {
+              newData[j].push(data[3 - i][j]);
+            }
+          }
+          // cellData => data[3 - i][j]   i=> j
+        });
+      });
+      console.log(newData);
+      [1, 2, 3, 4].forEach((rowData, i) => {
+        [1, 2, 3, 4].forEach((cellData, j) => {
+          data[3 - j][i] = Math.abs(newData[i][j]) || 0;
+        });
+      });
       break;
+    }
+  }
+
+  if (data.flat().includes(2048)) {
+    draw();
+    setTimeout(() => {
+      alert("축하합니다. 2048을 만들었습니다!");
+    }, 0);
+  } else if (!data.flat().includes(0)) {
+    //빈칸이 없으면
+    alert(`패배했습니다... ${score.textContent}점`);
+  } else {
+    put2ToRandomCell();
+    draw();
   }
 }
+
 window.addEventListener("keyup", (event) => {
   if (event.key === "ArrowUp") {
     moveCells("up");
