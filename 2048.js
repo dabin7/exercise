@@ -216,4 +216,5 @@ window.addEventListener("mouseup", (event) => {
   } else if (diffY < 0 && Math.abs(diffX) <= Math.abs(diffY)) {
     moveCells("up");
   }
+  console.log(event.clientX);
 });
