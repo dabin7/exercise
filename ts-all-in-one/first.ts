@@ -1,4 +1,4 @@
-const a: string = '5';
+const a = '5'; //최대한 정확하게 하기위해 :string을 빼줌
 const b: number = 5;
 const c: boolean = true;
 const d: undefined = undefined;
