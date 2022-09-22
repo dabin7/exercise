@@ -1,0 +1,13 @@
+#clock {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: 'Chakra Petch', sans-serif;
+    font-size: 150px;
+    font-weight: 700;
+
+    margin: 20px;
+    text-shadow: 2px 2px 2px rgb(95, 95, 95);
+    opacity: 80%;
+}

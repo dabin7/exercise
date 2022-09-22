@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="kr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>To-Do-List</title>
+</head>
+<body>
+    <main>
+      <div class="ddd">
+        <div id="weather">
+          <span></span>
+          <span></span>
+      </div>
+      <div id="clock">00:00</div>
+  </div>
+      <div class = "main-screen">
+      <div class="left-screen">
+        <form class="login-form hidden">
+          <span>Name :</span>
+            <input type="text" maxlength="15" placeholder="Nick Name">
+            <button>Log In</button>
+        </form>
+        <span class="greeting hidden" ></span>
+        <div class="core"></div>
+      </div>
+      <div class="right-screen">
+        <span class="todo-title">To Do List</span>
+        <form class="todo-form">
+            <input type="text" placeholder="Enter please">
+        </form>
+        <ul class="todo-list"></ul>
+      </div>
+    </div>
+    </main>
+    <script src="js/weather.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/login.js"></script>
+    <script src="js/todo.js"></script>
+    <script src="js/bg.js"></script>
+</body>
+</html>

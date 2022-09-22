@@ -1,0 +1,69 @@
+.main-screen {
+    display: flex;
+    width: 100%;
+    font-family: Cute font;
+    font-weight: 600;
+}
+
+.left-screen {
+    width: 50%;
+}
+
+.left-screen span {
+    margin: 0 0 0px 80px;
+    font-size: 100px;
+}
+
+.right-screen {
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-title {
+    font-size: 60px;
+}
+
+.right-screen input {
+    padding: 8px 20px;
+    border: 2px solid rgba(0, 0, 0, 0.4);
+    border-radius: 50px;
+    width: 300px;
+    margin-bottom: 10px;
+    
+}
+
+.right-screen li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.right-screen ul {
+    overflow-y: auto;
+    padding: 20px;
+    height: 540px;
+    margin: 10px;
+    border: 5px solid rgba(0, 0, 0, 0.5);
+    box-shadow : 2px 2px 2px 2px;
+    border-radius: 20px;
+    width: 350px;
+}
+
+.right-screen li span {
+    display: flex;
+    margin: 0px 10px;
+    font-size: 30px;
+    width: 300px;
+    height: 30px;
+    overflow-x: hidden;
+   
+}
+
+.right-screen li button {
+    border: none;
+}
+
