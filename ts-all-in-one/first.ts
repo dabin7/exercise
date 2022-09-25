@@ -74,3 +74,40 @@ const obj = { a: '123', b: 'hello', c: 'world' } as const;
 type Key = keyof typeof obj; // obj를 타입으로 쓰고싶을 때 typeof 그 중 키값 keyof 해서 Key라는 타입으로 만듬.
 type Key2 = typeof obj[keyof typeof obj]; // = 이넘enum 원리
 //Key2는 value들의 타입만 가져옴
+
+//객체 타이핑: type과 interface 구분하기
+type A = { a: string };
+const a: A = { a: 'hello' };
+
+interface B {
+  a: string;
+}
+const b: B = { a: 'hello' }; //객체지향형으로 하고싶으면 interface - 선언이 여러번 될 수 있으며 합쳐짐.
+
+function add(x: string | number, y: string | number): string | number {
+  return x + y; //return값 x
+} //union = | (또는)
+add(1, 2);
+add('1', '2');
+add(1, '2');
+
+const bb: A & B = { a: 'hello', b: 'world' };
+//객체 경우 &(intersection) : 모든 속성이 다 있어야함,  | : 하나이상의 속성만 있음 된다.
+
+//좁은타입은 넓은 타입에 넣을 수 있지만, 좁은타입이라도 잉여속성검사의 경우는 따로 변수로 만들어줘야한다.
+
+declare function forEach<T>(arr: T[], callback: (el: T) => undefined): void; //declare선언시 js에서는 사라짐
+// declare function forEach<T>(arr: T[], callback: (el: T) => void): void;
+let target: number[] = [];
+forEach([1, 2, 3], (el) => target.push(el));
+
+interface A {
+  talk: () => void;
+}
+const a: A = {
+  talk() {
+    return 3;
+  },
+}; // void 타입은 return값을 사용하지 안 겠다는 뜻(메서드나 매개변수에서는 리턴값 사용 가능- 아무값이나 상관없다 의미, but 조심해야 함)
+// return값에 void와 매서드,매개변수의 void는 다르다
+//타입가드
