@@ -53,6 +53,7 @@ interface Dog {
   bow: number;
 }
 function catOrDog(a: Cat | Dog): a is Dog {
+  //is 커스텀 타입 추론
   if ((a as Cat).meow) {
     return false;
   }
@@ -78,3 +79,4 @@ const promises = await Promise.allSettled([
   Promise.resolve('b'),
 ]);
 const errors = promises.filter(isRejected);
+//promise(then,catch) 비동기함수들을 제어함. 이행then 거부catch
