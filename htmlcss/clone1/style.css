@@ -1,0 +1,105 @@
+#layout > * {
+  border: 1px solid gray;
+  position: relatvie;
+}
+
+#layout {
+  display: grid;
+  grid-template-rows: 64px 200px 712px 184px 48px;
+  margin-bottom: 60px;
+}
+
+#logo {
+  position: absolute;
+  width: 104px;
+  height: 32px;
+  left: 5%;
+  top: 16px;
+}
+
+#menu {
+  position: absolute;
+  left: 15%;
+  right: 18%;
+  top: 28%;
+  bottom: 42%;
+  text-align: center;
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.sectionName {
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.8);
+  margin-bottom: 15px;
+}
+
+.line1 {
+  background: rgba(0, 0, 0, 0.08);
+  height: 2px;
+}
+
+.line2 {
+  background: linear-gradient(
+      234.67deg,
+      rgba(255, 255, 255, 0.16) 0.24%,
+      rgba(255, 255, 255, 0) 100.87%
+    ),
+    #006be8;
+  height: 2px;
+  width: 30%;
+  position: relative;
+  bottom: 2px;
+}
+
+.explain {
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 20px;
+  letter-spacing: 0.02em;
+  color: rgba(0, 0, 0, 0.64);
+  margin-top: 15px;
+}
+
+#footerSection1 {
+  position: absolute;
+  left: 5.62%;
+  right: 73.12%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection2 {
+  position: absolute;
+  left: 28.12%;
+  right: 50.62%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection3 {
+  position: absolute;
+  left: 50.62%;
+  right: 28.12%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection4 {
+  position: absolute;
+  left: 73.12%;
+  right: 5.62%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
