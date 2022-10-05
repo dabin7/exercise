@@ -1,6 +1,6 @@
 #layout > * {
   border: 1px solid gray;
-  position: relatvie;
+  position: relative;
 }
 
 #layout {
@@ -29,6 +29,127 @@
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+
+  text-align: center;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+
+  color: rgba(0, 0, 0, 0.88);
+}
+.links {
+  margin-left: 3%;
+}
+
+#signIn {
+  position: absolute;
+  left: 86%;
+  right: 5%;
+  top: 12%;
+  bottom: 12%;
+}
+
+#title {
+  background: linear-gradient(
+      263.53deg,
+      rgba(255, 255, 255, 0.32) 0.24%,
+      rgba(255, 255, 255, 0.08) 100%
+    ),
+    #006be8;
+}
+
+#heading {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 24%;
+  bottom: 48%;
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 64px;
+  line-height: 56px;
+
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-variant: small-caps;
+
+  color: #ffffff;
+}
+
+#subtitle {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 64%;
+  bottom: 24%;
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 24px;
+
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+
+  color: #ffffff;
+}
+
+#wrapper {
+  background: gray;
+}
+
+#inner {
+  height: 584px;
+  margin-top: 48px;
+  margin-bottom: 80px;
+  margin-left: 8%;
+  margin-right: 8%;
+  display: grid;
+  grid-template-columns: 300px 1fr;
+}
+
+#box1 {
+  background-color: white;
+  margin-right: 16px;
+}
+#box2 {
+  background-color: white;
+}
+
+#footerSection1 {
+  position: absolute;
+  left: 5.62%;
+  right: 73.12%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection2 {
+  position: absolute;
+  left: 28.12%;
+  right: 50.62%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection3 {
+  position: absolute;
+  left: 50.62%;
+  right: 28.12%;
+  top: 20.69%;
+  bottom: 31.03%;
+}
+
+#footerSection4 {
+  position: absolute;
+  left: 73.12%;
+  right: 5.62%;
+  top: 20.69%;
+  bottom: 31.03%;
 }
 
 .sectionName {
@@ -72,34 +193,40 @@
   margin-top: 15px;
 }
 
-#footerSection1 {
+#copyright {
   position: absolute;
-  left: 5.62%;
-  right: 73.12%;
-  top: 20.69%;
-  bottom: 31.03%;
+  left: 41.25%;
+  right: 41.25%;
+  top: 33.33%;
+  bottom: 33.33%;
+  font-family: system-ui;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 16px;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: rgba(0, 0, 0, 0.48);
 }
 
-#footerSection2 {
+#instagram {
   position: absolute;
-  left: 28.12%;
-  right: 50.62%;
-  top: 20.69%;
-  bottom: 31.03%;
-}
-
-#footerSection3 {
-  position: absolute;
-  left: 50.62%;
-  right: 28.12%;
-  top: 20.69%;
-  bottom: 31.03%;
-}
-
-#footerSection4 {
-  position: absolute;
-  left: 73.12%;
+  left: 93.12%;
   right: 5.62%;
-  top: 20.69%;
-  bottom: 31.03%;
+  top: 33.33%;
+  bottom: 33.33%;
+}
+#twitter {
+  position: absolute;
+  left: 91.25%;
+  right: 7.5%;
+  top: 33.33%;
+  bottom: 33.33%;
+}
+#facebook {
+  position: absolute;
+  left: 89.38%;
+  right: 9.38%;
+  top: 33.33%;
+  bottom: 33.33%;
 }
